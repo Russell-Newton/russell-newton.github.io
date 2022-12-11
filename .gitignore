@@ -86,8 +86,8 @@ fabric.properties
 
 .idea/*
 
-!.idea/codeStyles
-!.idea/runConfigurations
+#!.idea/codeStyles
+#!.idea/runConfigurations
 
 ### Node ###
 # Logs
@@ -243,3 +243,10 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,jetbrains+all
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# testing
+/coverage
+
+# production
+/build
