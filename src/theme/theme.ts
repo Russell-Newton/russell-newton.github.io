@@ -1,4 +1,4 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react"
+import { extendTheme, StyleFunctionProps, type ThemeConfig } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
 
 const config: ThemeConfig = {
@@ -22,16 +22,16 @@ export default extendTheme({
     }
   },
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       '*::-webkit-scrollbar': {
         width: '1em',
       },
       '*::-webkit-scrollbar-track': {
-        background: mode("blackAlpha.200", "blackAlpha.500"),
+        background: mode("blackAlpha.200", "whiteAlpha.200")(props),
       },
       '*::-webkit-scrollbar-thumb': {
-        background: mode("blackAlpha.400", "whiteAlpha.300"),
+        background: mode("blackAlpha.400", "whiteAlpha.300")(props),
       },
-    }
+    })
   },
 });

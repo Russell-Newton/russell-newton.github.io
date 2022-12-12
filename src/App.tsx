@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Grid, GridItem, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
+import { Grid, GridItem, Portal, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
 import { About } from "./components/About";
 import { Education } from "./components/Education";
 import { Experience } from "./components/Experience";
@@ -8,12 +8,15 @@ import { Contact } from "./components/Contact";
 
 export const App = () => {
 
+  const contentRef = React.useRef<HTMLDivElement | null>(null);
+
   return (
     <Grid
       templateAreas={`"header header"
+                      "nav tabs"
                       "nav main"
                       "footer footer"`}
-      gridTemplateRows={"45px calc(100vh - 70px) 25px"}
+      gridTemplateRows={"45px 42px 1fr 25px"}
       gridTemplateColumns={"min(100px, calc(12.5vw)) 1fr"}
       gap={0}
       minH="calc(100vh)"
@@ -27,7 +30,7 @@ export const App = () => {
         Nav
       </GridItem>
       <GridItem
-        area={"main"}
+        area={"tabs"}
       >
         <Tabs>
           <TabList>
@@ -37,25 +40,30 @@ export const App = () => {
             <Tab>Experience</Tab>
             <Tab>Contact</Tab>
           </TabList>
-          <TabPanels alignContent="left">
-            <TabPanel>
-              <About/>
-            </TabPanel>
-            <TabPanel>
-              <Education/>
-            </TabPanel>
-            <TabPanel>
-              <Projects/>
-            </TabPanel>
-            <TabPanel>
-              <Experience/>
-            </TabPanel>
-            <TabPanel>
-              <Contact/>
-            </TabPanel>
-          </TabPanels>
+
+          {/* This lets us only scroll the TabPanels content */}
+          <Portal containerRef={contentRef}>
+            <TabPanels alignContent="left">
+              <TabPanel>
+                <About/>
+              </TabPanel>
+              <TabPanel>
+                <Education/>
+              </TabPanel>
+              <TabPanel>
+                <Projects/>
+              </TabPanel>
+              <TabPanel>
+                <Experience/>
+              </TabPanel>
+              <TabPanel>
+                <Contact/>
+              </TabPanel>
+            </TabPanels>
+          </Portal>
         </Tabs>
       </GridItem>
+      <GridItem area={"main"} ref={contentRef} h="100%" overflowY="auto" />
       <GridItem bg="blue.300" area={"footer"}>
         Footer
       </GridItem>
