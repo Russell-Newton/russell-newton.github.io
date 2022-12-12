@@ -1,36 +1,64 @@
 import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-} from "@chakra-ui/react"
-import { Logo } from "./Logo"
-import theme from "./theme"
+import { Grid, GridItem, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
+import { About } from "./components/About";
+import { Education } from "./components/Education";
+import { Experience } from "./components/Experience";
+import { Projects } from "./components/Projects";
+import { Contact } from "./components/Contact";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+export const App = () => {
+
+  return (
+    <Grid
+      templateAreas={`"header header"
+                      "nav main"
+                      "footer footer"`}
+      gridTemplateRows={"45px calc(100vh - 70px) 25px"}
+      gridTemplateColumns={"min(100px, calc(12.5vw)) 1fr"}
+      gap={0}
+      minH="calc(100vh)"
+      maxH="calc(100vh)"
+      h="calc(100vh)"
+    >
+      <GridItem bg="orange.300" area={"header"}>
+        Header
+      </GridItem>
+      <GridItem bg="pink.300" area={"nav"}>
+        Nav
+      </GridItem>
+      <GridItem
+        area={"main"}
+      >
+        <Tabs>
+          <TabList>
+            <Tab>About</Tab>
+            <Tab>Education</Tab>
+            <Tab>Projects</Tab>
+            <Tab>Experience</Tab>
+            <Tab>Contact</Tab>
+          </TabList>
+          <TabPanels alignContent="left">
+            <TabPanel>
+              <About/>
+            </TabPanel>
+            <TabPanel>
+              <Education/>
+            </TabPanel>
+            <TabPanel>
+              <Projects/>
+            </TabPanel>
+            <TabPanel>
+              <Experience/>
+            </TabPanel>
+            <TabPanel>
+              <Contact/>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </GridItem>
+      <GridItem bg="blue.300" area={"footer"}>
+        Footer
+      </GridItem>
+    </Grid>
+  )
+}
