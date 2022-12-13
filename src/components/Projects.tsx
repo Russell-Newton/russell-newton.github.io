@@ -1,4 +1,4 @@
-import { Box, Text, useColorModeValue, useToken } from "@chakra-ui/react";
+import { Box, Center, Heading, Text, useColorModeValue, useToken, VStack } from "@chakra-ui/react";
 import { Theme } from "react-activity-calendar";
 import GitHubCalendar from "react-github-calendar";
 import ReactTooltip from "react-tooltip";
@@ -26,14 +26,18 @@ export const Projects = () => {
     <Box>
       <Text>Projects Section</Text>
 
-      <GitHubCalendar
-        username="Russell-Newton"
-        fontSize={16}
-        theme={calendarTheme}
-        // hideColorLegend
-      >
-        <ReactTooltip delayShow={50} html/>
-      </GitHubCalendar>
+      <Center>
+        <VStack>
+          <Heading size="lg">GitHub Contributions</Heading>
+          <GitHubCalendar
+            username="Russell-Newton"
+            fontSize={16}
+            theme={calendarTheme}
+          >
+            <ReactTooltip delayShow={50} html/>
+          </GitHubCalendar>
+        </VStack>
+      </Center>
     </Box>
   );
 }

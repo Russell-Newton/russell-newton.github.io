@@ -38,7 +38,7 @@ export const About = () => {
   return (
     <Flex>
       <Box>
-        <Heading size="4xl">Russell Newton</Heading>
+        <Heading size="4xl" as="h1">Russell Newton</Heading>
 
         <Box h="4em"></Box>
 
