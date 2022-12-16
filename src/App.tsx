@@ -48,6 +48,7 @@ export const App = () => {
    * https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed=&file=/src/Example.tsx
    */
   const variants = {
+    /* For whatever reason, drag complete triggers base, center, and out each for a frame
     base: (custom: TabCustom) => {
       let { index } = custom;
       return {
@@ -59,7 +60,7 @@ export const App = () => {
     },
     center: (custom: TabCustom) => {
       let { index } = custom;
-      if (index === animatingTab && !tabExiting) {
+      if (index === tabIndex && !tabExiting) {
         return {
           x: 0,
           opacity: 1,
@@ -83,7 +84,47 @@ export const App = () => {
         }
       }
       return {};
-    }
+    },
+    */
+    combo: (custom: TabCustom) => {
+      let { index } = custom;
+
+      type OutType = {
+        x: number | string,
+        opacity: number,
+        zIndex: number,
+        display?: string,
+        transitionEnd?: object
+      }
+
+      let out: OutType = {
+        x: index > animatingTab ? "100vw" : "-100vw",
+        opacity: 0,
+        zIndex: 0,
+        display: "none",
+      };
+      if (index === animatingTab && tabExiting) {
+        out = {
+          x: direction > 0 ? "-100vw": "100vw",
+          opacity: 0,
+          zIndex: 0,
+          display: "inherit",
+          transitionEnd: {
+            display: "none",
+          }
+        };
+      }
+      if (index === tabIndex && !tabExiting) {
+        out = {
+          x: 0,
+          opacity: 1,
+          zIndex: 1,
+          display: "inherit",
+        };
+      }
+
+      return out;
+    },
   };
 
   const changeTab = (index: number) => {
@@ -138,20 +179,20 @@ export const App = () => {
                       style={{ display: tabDisplays[index] }}
                       custom={{ index }}
                       variants={variants}
-                      animate={["base", "out", "center"]}
+                      animate={["combo"]}
+                      // animate={["base", "out", "center"]}
                       transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.5 }
+                        // x: { type: "spring", stiffness: 300, damping: 30 },
+                        x: { ease: "easeInOut" },
+                        opacity: { duration: 0.3 }
                       }}
-                      onAnimationComplete={definition => {
-                        console.log(index, tabDisplays[index].get())
-                        if (definition === "out" && tabDisplays[index].get() === "none") {
+                      onAnimationComplete={_definition => {
+                        if (index === animatingTab && tabDisplays[index].get() === "none") {
                           setTabExiting(false);
                           setAnimatingTab(tabIndex);
                         }
                       }}
-                      // Having problems related to drag :(
-                      // drag="x"
+                      drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={1}
                       onDragEnd={(e, { offset, velocity }) => {
