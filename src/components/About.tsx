@@ -3,21 +3,28 @@ import {
   Card,
   CardBody,
   Divider,
-  Flex,
   Heading,
   Image,
   List,
   ListIcon,
   ListItem,
-  Spacer,
-  Tag, useColorModeValue,
+  Tag,
+  useColorModeValue,
   Wrap,
   WrapItem
 } from "@chakra-ui/react";
 import { FaAngleDoubleRight } from "react-icons/all";
 import React from "react";
+import { HorizontalLR, VCenter } from "./SpacingTools";
 
 export const About = () => {
+
+  const tags: Array<string> = [
+    // "Quick Learner",
+    "Grad Student",
+    "Strong Leader",
+    "Eagle Scout",
+  ]
 
   type SkillsDict = { [index: string]: string };
 
@@ -36,25 +43,21 @@ export const About = () => {
   };
 
   return (
-    <Flex>
+    <HorizontalLR>
       <Box>
         <Heading size="4xl" as="h1">Russell Newton</Heading>
 
         <Box h="4em"></Box>
 
         <List fontSize={30} pl="4rem">
-          <ListItem>
-            <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
-            Avid Learner
-          </ListItem>
-          <ListItem>
-            <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
-            Enthusiastic Programmer
-          </ListItem>
-          <ListItem>
-            <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
-            Eagle Scout
-          </ListItem>
+          {
+            tags.map((value) => (
+              <ListItem key={value}>
+                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
+                {value}
+              </ListItem>
+            ))
+          }
         </List>
 
         <Box h="4em"></Box>
@@ -80,17 +83,19 @@ export const About = () => {
           </CardBody>
         </Card>
       </Box>
-      <Spacer/>
-      <Image
-        src="images/me.jpg"
-        boxSize="xl"
-        objectFit="cover"
-        borderRadius="full"
-        borderWidth="1em"
-        borderStyle="solid"
-        borderColor={useColorModeValue("brightBlueAlpha.100", "whiteAlpha.300")}
-        alt="Russell Newton"
-      />
-    </Flex>
+
+      <VCenter>
+        <Image
+          src="images/me.jpg"
+          boxSize="xl"
+          objectFit="cover"
+          borderRadius="full"
+          borderWidth="1em"
+          borderStyle="solid"
+          borderColor={useColorModeValue("brightBlueAlpha.100", "whiteAlpha.300")}
+          alt="Russell Newton"
+        />
+      </VCenter>
+    </HorizontalLR>
   );
 }
