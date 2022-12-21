@@ -29,7 +29,7 @@ const Info = (props: InfoType) => {
 const info: Array<InfoType> = [
   {
     def: "Email",
-    display: "russell.newton01@gmail.com",
+    display: "Russell.Newton01@gmail.com",
     link: "mailto:russell.newton01@gmail.com",
     icon: SiGmail,
   },
