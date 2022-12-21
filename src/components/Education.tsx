@@ -69,7 +69,7 @@ const Edu = (props: EduProps) => {
           {
             React.Children.map(props.children, (value) => (
               <ListItem key={`${props.school}_${props.degree}`}>
-                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
+                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200" pb="4px"/>
                 {value}
               </ListItem>
             ))

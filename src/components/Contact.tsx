@@ -20,7 +20,13 @@ const Info = (props: InfoType) => {
           <VCenter>
             <ListIcon as={props.icon} color="brightBlue.200" pb={`${fontSize * 0.2}px`}/>
           </VCenter>
-          <Link href={props.link}>{props.display}</Link>
+          <Link
+            href={props.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {props.display}
+          </Link>
         </Flex>
     </ListItem>
   );
@@ -56,7 +62,7 @@ export const Contact = () => {
       <List fontSize={fontSize} pl="6rem">
         {
           info.map((value) => (
-            <Info {...value}/>
+            <Info {...value} key={`contact-${value.def}`}/>
           ))
         }
       </List>

@@ -53,7 +53,7 @@ export const About = () => {
           {
             tags.map((value) => (
               <ListItem key={value}>
-                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
+                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200" pb="6px"/>
                 {value}
               </ListItem>
             ))

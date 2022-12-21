@@ -170,7 +170,7 @@ export const App = () => {
         <GridItem area={"main"} h="100%" overflowY="auto" overflowX="hidden" px="5vw">
           <Flex h="100%" direction="column">
             <Spacer/>
-            <Box>
+            <Box p="1rem">
               {
                 Object.values(tabs).map((value, index) => {
                   return (
@@ -192,7 +192,7 @@ export const App = () => {
                           setAnimatingTab(tabIndex);
                         }
                       }}
-                      drag="x"
+                      // drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={1}
                       onDragEnd={(e, { offset, velocity }) => {

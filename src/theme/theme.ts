@@ -1,6 +1,7 @@
 import { extendTheme, StyleFunctionProps, type ThemeConfig } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
-import { tagTheme } from "./tags";
+import { tagTheme } from "./tag";
+import { linkTheme } from "./link";
 
 const config: ThemeConfig = {
   initialColorMode: "system",
@@ -10,6 +11,7 @@ export default extendTheme({
   config,
   components: {
     Tag: tagTheme,
+    Link: linkTheme,
   },
   colors: {
     brightBlue: {
