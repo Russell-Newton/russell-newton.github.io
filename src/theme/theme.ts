@@ -39,6 +39,10 @@ export default extendTheme({
       900: '#00002099',
     }
   },
+  fonts: {
+    heading: `"Roboto Mono", monospace`,
+    body: `"Roboto Mono", monospace`,
+  },
   styles: {
     global: (props: StyleFunctionProps) => ({
       '*::-webkit-scrollbar': {

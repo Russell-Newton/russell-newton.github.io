@@ -103,7 +103,7 @@ const Undergrad = () => {
     >
       <Text as="span">Graduated with Full Honors</Text>
       <Text as="span">Concentrations: Artificial Intelligence, Modeling & Simulation</Text>
-      <Text as="span">GPA: 3.86</Text>
+      <Text as="span">GPA: 3.87</Text>
     </Edu>
   );
 };
