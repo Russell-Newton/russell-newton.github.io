@@ -8,6 +8,6 @@ const baseStyle = defineStyle({
   }
 })
 
-export const linkTheme = defineStyleConfig({
+export const LinkTheme = defineStyleConfig({
   baseStyle,
 })

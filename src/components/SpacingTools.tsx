@@ -5,9 +5,7 @@ export const VCenter = (props: BoxProps) => {
   return (
     <Flex direction="column">
       <Spacer/>
-      <Box {...props}>
-        {props.children}
-      </Box>
+      <Box {...props} />
       <Spacer/>
     </Flex>
   )

@@ -15,7 +15,7 @@ const dynamic = definePartsStyle((props) => ({
   }
 }));
 
-export const tagTheme = defineMultiStyleConfig({
+export const TagTheme = defineMultiStyleConfig({
   variants: {
     dynamic: dynamic,
   }

@@ -3,7 +3,7 @@ import {
   Card,
   CardBody,
   Divider,
-  Heading,
+  Heading, HStack,
   Image,
   List,
   ListIcon,
@@ -16,6 +16,7 @@ import {
 import { FaAngleDoubleRight } from "react-icons/all";
 import React from "react";
 import { HorizontalLR, VCenter } from "./SpacingTools";
+import { CapsizedText } from "./CapsizedText";
 
 export const About = () => {
 
@@ -33,13 +34,16 @@ export const About = () => {
     "Java": "brightBlueAlpha.300",
     "C/C++": "brightBlueAlpha.300",
     "AI/ML": "brightBlueAlpha.300",
+    "Docker": "brightBlueAlpha.300",
+    "MySQL": "brightBlueAlpha.300",
     "Computer Graphics": "brightBlueAlpha.300",
     "Computer Vision": "brightBlueAlpha.300",
     "Linear Algebra": "brightBlueAlpha.300",
     "Multivariable Calculus": "brightBlueAlpha.300",
-    "Algorithm Design": "brightBlueAlpha.300",
-    "Algorithm Analysis": "brightBlueAlpha.300",
+    "Algorithm Design & Analysis": "brightBlueAlpha.300",
     "Leadership": "brightBlueAlpha.300",
+    "Communication": "brightBlueAlpha.300",
+    "Instructing & Mentoring": "brightBlueAlpha.300",
   };
 
   return (
@@ -49,12 +53,14 @@ export const About = () => {
 
         <Box h="4em"></Box>
 
-        <List fontSize={30} pl="4rem">
+        <List fontSize={30} pl="4rem" spacing="0.25em">
           {
             tags.map((value) => (
-              <ListItem key={value}>
-                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200" pb="6px"/>
-                {value}
+              <ListItem key={value} as={HStack}>
+                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
+                <CapsizedText capsizeOptions={{capHeight: 23}}>
+                  {value}
+                </CapsizedText>
               </ListItem>
             ))
           }
@@ -62,7 +68,7 @@ export const About = () => {
 
         <Box h="4em"></Box>
 
-        <Card maxW="xl" mx={5}>
+        <Card maxW="2xl" mx={5}>
           <CardBody>
             <Heading size="md">
               Skill Set

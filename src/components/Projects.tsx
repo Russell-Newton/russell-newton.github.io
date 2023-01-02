@@ -13,7 +13,7 @@ import {
   Image,
   Link,
   LinkBox,
-  LinkOverlay,
+  LinkOverlay, List, ListIcon, ListItem,
   SimpleGrid,
   SimpleGridProps,
   Spacer,
@@ -29,6 +29,7 @@ import * as React from "react";
 import { BiGitRepoForked, FaLink, FaRegStar, GoEye } from "react-icons/all";
 import { Async } from "react-async";
 import getRawGithubFileContent from "../tools/gitraw";
+import { CapsizedText } from "./CapsizedText";
 
 const jsyaml = require("js-yaml");
 
@@ -45,6 +46,7 @@ type RepoProps = {
   name: string,
   description: string,
   stargazers_count: number,
+  subscribers_count: number,
   forks_count: number,
   homepage: string,
   colors: Array<{ language: string, color: string, proportion: number }>,
@@ -68,9 +70,9 @@ const RepoCard = (repo: RepoProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Text as="h6">
+            <Heading as="h6">
               {repo.name}
-            </Text>
+            </Heading>
           </LinkOverlay>
         </Flex>
       </CardHeader>
@@ -78,14 +80,15 @@ const RepoCard = (repo: RepoProps) => {
       <CardBody
         fontSize="20px"
       >
-        <Text>{repo.description}</Text>
+        {repo.description}
       </CardBody>
-      <CardFooter>
+      <CardFooter pb="0.75em">
         <VStack width="100%">
           <Text
             width="100%"
             textAlign="left"
             noOfLines={1}
+            fontStyle="italic"
           >
             {repo.colors.slice(0, 4).map(x => x.language).join(", ")}
           </Text>
@@ -114,27 +117,28 @@ const RepoCard = (repo: RepoProps) => {
           </Flex>
           <Flex width="100%">
             <HStack
+              as={List}
               fontSize="20px"
-              spacing="0.75rem"
+              spacing="0.75em"
             >
-              <HStack spacing="0.375rem">
-                <Icon as={GoEye}/>
-                <Text>
+              <ListItem as={HStack} spacing="0.125em">
+                <ListIcon as={GoEye}/>
+                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                  {repo.subscribers_count}
+                </CapsizedText>
+              </ListItem>
+              <ListItem as={HStack} spacing="0.125em">
+                <ListIcon as={FaRegStar}/>
+                <CapsizedText capsizeOptions={{capHeight: 15}}>
                   {repo.stargazers_count}
-                </Text>
-              </HStack>
-              <HStack spacing="0.375rem">
-                <Icon as={FaRegStar}/>
-                <Text>
-                  {repo.stargazers_count}
-                </Text>
-              </HStack>
-              <HStack spacing="0.375rem">
-                <Icon as={BiGitRepoForked}/>
-                <Text>
+                </CapsizedText>
+              </ListItem>
+              <ListItem as={HStack} spacing="0.125em">
+                <ListIcon as={BiGitRepoForked}/>
+                <CapsizedText capsizeOptions={{capHeight: 15}}>
                   {repo.forks_count}
-                </Text>
-              </HStack>
+                </CapsizedText>
+              </ListItem>
             </HStack>
             <Spacer/>
             {repo.homepage && (
@@ -230,6 +234,7 @@ const Repos = (props: SimpleGridProps) => {
           >
             {
               state => {
+                console.log(state.data)
                 return (
                   state && state.data ?
                     <RepoCard {...state.data}/>
@@ -261,19 +266,19 @@ const UserCard = (user: UserProps) => {
         width="64px"
         mr="1rem"
       />
-      <Text>{user.login}</Text>
+      <Heading>{user.login}</Heading>
 
       <Center height="54px">
         <Divider orientation="vertical" mx="1rem"/>
       </Center>
 
-      <Text>{user.public_repos} repos</Text>
+      <Heading>{user.public_repos} repos</Heading>
 
       <Center height="54px">
         <Divider orientation="vertical" mx="1rem"/>
       </Center>
 
-      <Text>{user.followers} followers</Text>
+      <Heading>{user.followers} followers</Heading>
     </Center>
   );
 }

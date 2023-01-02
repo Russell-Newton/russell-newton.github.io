@@ -1,8 +1,8 @@
-import { Box, Flex, Heading, Link, List, ListIcon, ListItem } from "@chakra-ui/react";
+import { Box, Heading, HStack, Link, List, ListIcon, ListItem } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import React from "react";
 import { SiGithub, SiGmail, SiLinkedin } from "react-icons/all";
-import { VCenter } from "./SpacingTools";
+import { CapsizedText } from "./CapsizedText";
 
 type InfoType = {
   def: string,
@@ -15,11 +15,9 @@ const fontSize = 54;
 
 const Info = (props: InfoType) => {
   return (
-    <ListItem>
-        <Flex>
-          <VCenter>
-            <ListIcon as={props.icon} color="brightBlue.200" pb={`${fontSize * 0.2}px`}/>
-          </VCenter>
+    <ListItem as={HStack}>
+        <ListIcon as={props.icon} color="brightBlue.200"/>
+        <CapsizedText capsizeOptions={{capHeight: 42}}>
           <Link
             href={props.link}
             target="_blank"
@@ -27,7 +25,7 @@ const Info = (props: InfoType) => {
           >
             {props.display}
           </Link>
-        </Flex>
+        </CapsizedText>
     </ListItem>
   );
 };
@@ -59,7 +57,7 @@ export const Contact = () => {
     <Box>
       <Heading fontSize={fontSize * 1.5} as="h1">Get in Touch!</Heading>
 
-      <List fontSize={fontSize} pl="6rem">
+      <List fontSize={fontSize} pl="6rem" spacing="0.25em">
         {
           info.map((value) => (
             <Info {...value} key={`contact-${value.def}`}/>

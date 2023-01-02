@@ -1,10 +1,13 @@
+import "@fontsource/league-spartan"
 import "@fontsource/roboto-mono"
+import "@fontsource/roboto-slab"
 
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
 import * as React from "react"
 import * as ReactDOM from "react-dom/client"
 import { App } from "./App"
 import theme from "./theme/theme";
+import { IconContext } from "react-icons"
 
 
 const container = document.getElementById("root")
@@ -15,7 +18,9 @@ root.render(
   <React.StrictMode>
     <ColorModeScript/>
     <ChakraProvider theme={theme}>
-      <App/>
+      <IconContext.Provider value={{ style: { verticalAlign: 'baseline' } }}>
+        <App/>
+      </IconContext.Provider>
     </ChakraProvider>
   </React.StrictMode>,
 )

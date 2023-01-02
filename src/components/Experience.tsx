@@ -1,10 +1,13 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 
 export const Experience = () => {
 
   return (
-    <Box>
+    <VStack>
       <Text>Experience Section</Text>
-    </Box>
+      <iframe width="850px" height="1100px" title="Resume" src="resume.pdf?#view=fitH&scrollbar=0&toolbar=0&navpanes=0">
+        <p>Error Displaying Resume. Alternative download can be found <a href="./resume.pdf">here</a>.</p>
+      </iframe>
+    </VStack>
   );
 }

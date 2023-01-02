@@ -1,7 +1,18 @@
-import { Box, BoxProps, Heading, List, ListIcon, ListItem, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  BoxProps,
+  Heading, HStack,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+  useColorModeValue,
+  VStack
+} from "@chakra-ui/react";
 import { HorizontalLR, VCenter } from "./SpacingTools";
 import { FaAngleDoubleRight } from "react-icons/all";
 import React from "react";
+import { CapsizedText } from "./CapsizedText";
 
 const GTVerticalLogo = (props: BoxProps) => {
 
@@ -65,12 +76,14 @@ const Edu = (props: EduProps) => {
       <Heading as="h3" size="lg" pl="1.5rem">{props.school}</Heading>
       <Heading as="h3" size="md" pl="3rem">{props.startDate} - {props.endDate || "Present"}</Heading>
       <Box>
-        <List pl="3rem">
+        <List pl="3rem" spacing="0.25em">
           {
             React.Children.map(props.children, (value) => (
-              <ListItem key={`${props.school}_${props.degree}`}>
-                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200" pb="4px"/>
-                {value}
+              <ListItem key={`${props.school}_${props.degree}`} as={HStack}>
+                <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
+                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                  {value}
+                </CapsizedText>
               </ListItem>
             ))
           }

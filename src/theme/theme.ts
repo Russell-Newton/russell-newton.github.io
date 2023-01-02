@@ -1,7 +1,8 @@
 import { extendTheme, StyleFunctionProps, type ThemeConfig } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
-import { tagTheme } from "./tag";
-import { linkTheme } from "./link";
+import { TagTheme } from "./tag";
+import { LinkTheme } from "./link";
+import { HeadingTheme, CapsizedTextTheme } from "./text";
 
 const config: ThemeConfig = {
   initialColorMode: "system",
@@ -10,8 +11,10 @@ const config: ThemeConfig = {
 export default extendTheme({
   config,
   components: {
-    Tag: tagTheme,
-    Link: linkTheme,
+    Tag: TagTheme,
+    Link: LinkTheme,
+    Heading: HeadingTheme,
+    CapsizedText: CapsizedTextTheme,
   },
   colors: {
     brightBlue: {
@@ -40,8 +43,9 @@ export default extendTheme({
     }
   },
   fonts: {
-    heading: `"Roboto Mono", monospace`,
-    body: `"Roboto Mono", monospace`,
+    heading: `"League Spartan", sans-serif`,
+    body: `"Roboto Slab", serif`,
+    mono: `"Roboto Mono", monospace`,
   },
   styles: {
     global: (props: StyleFunctionProps) => ({
