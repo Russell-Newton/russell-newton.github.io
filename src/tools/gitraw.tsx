@@ -7,13 +7,13 @@ type GetFileContentOptions = {
 
 const getFileBlob = async (options: GetFileContentOptions, fileSHA: string) => {
   try {
-  const response = await fetch(
-    `https://api.github.com/repos/${options.user}/${options.repo}/git/blobs/${fileSHA}`
-  );
-  const data = await response.json();
+    const response = await fetch(
+      `https://api.github.com/repos/${options.user}/${options.repo}/git/blobs/${fileSHA}`
+    );
+    const data = await response.json();
 
-  let fileBlob = data.content
-  return await convertBlob(fileBlob)
+    let fileBlob = data.content
+    return await convertBlob(fileBlob)
   } catch (error) {
     console.log(error);
   }
@@ -22,7 +22,7 @@ const getFileBlob = async (options: GetFileContentOptions, fileSHA: string) => {
 const convertBlob = async (blob: string) => {
   try {
     return base64EncodeUnicode(blob)
-  } catch(error) {
+  } catch (error) {
     console.log(error)
   }
 }

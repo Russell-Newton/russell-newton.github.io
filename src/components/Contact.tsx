@@ -16,16 +16,16 @@ const fontSize = 54;
 const Info = (props: InfoType) => {
   return (
     <ListItem as={HStack}>
-        <ListIcon as={props.icon} color="brightBlue.200"/>
-        <CapsizedText capsizeOptions={{capHeight: 42}}>
-          <Link
-            href={props.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {props.display}
-          </Link>
-        </CapsizedText>
+      <ListIcon as={props.icon} color="brightBlue.200"/>
+      <CapsizedText capsizeOptions={{ capHeight: 42 }}>
+        <Link
+          href={props.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {props.display}
+        </Link>
+      </CapsizedText>
     </ListItem>
   );
 };

@@ -264,19 +264,20 @@ type UserProps = {
 
 const UserCard = (user: UserProps) => {
   return (
-    <Link
-      href="https://github.com/Russell-Newton"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Center fontSize="32px">
-        <Image
-          src={user.avatar_url}
-          alt={user.login}
-          height="64px"
-          width="64px"
-          mr="1rem"
-        />
+    <Center fontSize="32px">
+      <Image
+        src={user.avatar_url}
+        alt={user.login}
+        height="64px"
+        width="64px"
+        mr="1rem"
+      />
+      <Link
+        as={HStack}
+        href="https://github.com/Russell-Newton"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Heading>{user.login}</Heading>
 
         <Center height="54px">
@@ -290,8 +291,8 @@ const UserCard = (user: UserProps) => {
         </Center>
 
         <Heading>{user.followers} followers</Heading>
-      </Center>
-    </Link>
+      </Link>
+    </Center>
   );
 }
 
@@ -343,11 +344,7 @@ export const Projects = () => {
       </Center>
       <Repos minChildWidth="300px" spacing="1rem"/>
 
-      {/*<Divider my="2rem"/>*/}
-
       <Center mt="2rem">
-        {/*<VStack>*/}
-        {/*  <Heading size="lg" mb="1rem">GitHub Contributions</Heading>*/}
         <GitHubCalendar
           username="Russell-Newton"
           fontSize={16}
@@ -355,7 +352,6 @@ export const Projects = () => {
         >
           <ReactTooltip delayShow={50} html/>
         </GitHubCalendar>
-        {/*</VStack>*/}
       </Center>
     </Box>
   );

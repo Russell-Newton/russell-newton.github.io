@@ -137,7 +137,7 @@ export const Education = () => {
         <GTVerticalLogo
           boxSize="xl"
           mr="2em"
-          display={{"xl": "block", "base": "none"}}
+          display={{ "xl": "block", "base": "none" }}
         />
       </VCenter>
     </HorizontalLR>

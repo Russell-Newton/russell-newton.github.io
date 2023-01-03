@@ -62,7 +62,7 @@ export const App = () => {
         <Projects/>
       </VCenter>
     ),
-    Experience: (
+    Resume: (
       <VCenter>
         <Experience/>
       </VCenter>
