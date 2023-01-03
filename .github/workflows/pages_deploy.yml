@@ -36,6 +36,12 @@ jobs:
           cache-dependency-path: ./package-lock.json
       - name: Install Node dependencies
         run: npm install
+        
+      - name: Setup .env
+        run: |
+          touch .env
+          echo REACT_APP_GITHUB_API_KEY=${{ secrets.REACT_APP_GITHUB_API_KEY }} >> .env
+        
       - name: Demo app build
         run: npm run build
         
