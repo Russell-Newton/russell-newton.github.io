@@ -3,7 +3,8 @@ import {
   Card,
   CardBody,
   Divider,
-  Heading, HStack,
+  Heading,
+  HStack,
   Image,
   List,
   ListIcon,
@@ -58,7 +59,7 @@ export const About = () => {
             tags.map((value) => (
               <ListItem key={value} as={HStack}>
                 <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
-                <CapsizedText capsizeOptions={{capHeight: 23}}>
+                <CapsizedText capsizeOptions={{ capHeight: 23 }}>
                   {value}
                 </CapsizedText>
               </ListItem>
@@ -100,7 +101,7 @@ export const About = () => {
           borderStyle="solid"
           borderColor={useColorModeValue("brightBlueAlpha.100", "whiteAlpha.300")}
           alt="Russell Newton"
-          display={{"xl": "block", "base": "none"}}
+          display={{ "xl": "block", "base": "none" }}
         />
       </VCenter>
     </HorizontalLR>

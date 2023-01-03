@@ -2,7 +2,7 @@ import { extendTheme, StyleFunctionProps, type ThemeConfig } from "@chakra-ui/re
 import { mode } from "@chakra-ui/theme-tools"
 import { TagTheme } from "./tag";
 import { LinkTheme } from "./link";
-import { HeadingTheme, CapsizedTextTheme } from "./text";
+import { CapsizedTextTheme, HeadingTheme } from "./text";
 
 const config: ThemeConfig = {
   initialColorMode: "system",
