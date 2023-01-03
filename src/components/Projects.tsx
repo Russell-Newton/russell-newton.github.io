@@ -13,7 +13,10 @@ import {
   Image,
   Link,
   LinkBox,
-  LinkOverlay, List, ListIcon, ListItem,
+  LinkOverlay,
+  List,
+  ListIcon,
+  ListItem,
   SimpleGrid,
   SimpleGridProps,
   Spacer,
@@ -78,9 +81,11 @@ const RepoCard = (repo: RepoProps) => {
       </CardHeader>
 
       <CardBody
-        fontSize="20px"
+        py="1em"
       >
-        {repo.description}
+        <CapsizedText capsizeOptions={{ capHeight: 15, leading: 24 }}>
+          {repo.description}
+        </CapsizedText>
       </CardBody>
       <CardFooter pb="0.75em">
         <VStack width="100%">
@@ -123,33 +128,35 @@ const RepoCard = (repo: RepoProps) => {
             >
               <ListItem as={HStack} spacing="0.125em">
                 <ListIcon as={GoEye}/>
-                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                <CapsizedText capsizeOptions={{ capHeight: 15 }}>
                   {repo.subscribers_count}
                 </CapsizedText>
               </ListItem>
               <ListItem as={HStack} spacing="0.125em">
                 <ListIcon as={FaRegStar}/>
-                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                <CapsizedText capsizeOptions={{ capHeight: 15 }}>
                   {repo.stargazers_count}
                 </CapsizedText>
               </ListItem>
               <ListItem as={HStack} spacing="0.125em">
                 <ListIcon as={BiGitRepoForked}/>
-                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                <CapsizedText capsizeOptions={{ capHeight: 15 }}>
                   {repo.forks_count}
                 </CapsizedText>
               </ListItem>
             </HStack>
             <Spacer/>
             {repo.homepage && (
-              <Link
-                href={repo.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                fontSize="20px"
-              >
-                <Icon as={FaLink} transform="translate(0, 4px)"/>
-              </Link>
+              <CapsizedText capsizeOptions={{ capHeight: 15 }}>
+                <Link
+                  href={repo.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  fontSize="20px"
+                >
+                  <Icon as={FaLink} transform="translate(0, 4px)"/>
+                </Link>
+              </CapsizedText>
             )}
           </Flex>
         </VStack>
@@ -234,7 +241,6 @@ const Repos = (props: SimpleGridProps) => {
           >
             {
               state => {
-                console.log(state.data)
                 return (
                   state && state.data ?
                     <RepoCard {...state.data}/>
@@ -258,28 +264,34 @@ type UserProps = {
 
 const UserCard = (user: UserProps) => {
   return (
-    <Center fontSize="32px">
-      <Image
-        src={user.avatar_url}
-        alt={user.login}
-        height="64px"
-        width="64px"
-        mr="1rem"
-      />
-      <Heading>{user.login}</Heading>
+    <Link
+      href="https://github.com/Russell-Newton"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Center fontSize="32px">
+        <Image
+          src={user.avatar_url}
+          alt={user.login}
+          height="64px"
+          width="64px"
+          mr="1rem"
+        />
+        <Heading>{user.login}</Heading>
 
-      <Center height="54px">
-        <Divider orientation="vertical" mx="1rem"/>
+        <Center height="54px">
+          <Divider orientation="vertical" mx="1rem"/>
+        </Center>
+
+        <Heading>{user.public_repos} repos</Heading>
+
+        <Center height="54px">
+          <Divider orientation="vertical" mx="1rem"/>
+        </Center>
+
+        <Heading>{user.followers} followers</Heading>
       </Center>
-
-      <Heading>{user.public_repos} repos</Heading>
-
-      <Center height="54px">
-        <Divider orientation="vertical" mx="1rem"/>
-      </Center>
-
-      <Heading>{user.followers} followers</Heading>
-    </Center>
+    </Link>
   );
 }
 
@@ -336,13 +348,13 @@ export const Projects = () => {
       <Center mt="2rem">
         {/*<VStack>*/}
         {/*  <Heading size="lg" mb="1rem">GitHub Contributions</Heading>*/}
-          <GitHubCalendar
-            username="Russell-Newton"
-            fontSize={16}
-            theme={calendarTheme}
-          >
-            <ReactTooltip delayShow={50} html/>
-          </GitHubCalendar>
+        <GitHubCalendar
+          username="Russell-Newton"
+          fontSize={16}
+          theme={calendarTheme}
+        >
+          <ReactTooltip delayShow={50} html/>
+        </GitHubCalendar>
         {/*</VStack>*/}
       </Center>
     </Box>

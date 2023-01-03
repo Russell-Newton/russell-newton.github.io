@@ -1,11 +1,28 @@
 import * as React from "react"
-import { Box, Center, Flex, Grid, GridItem, Spacer, Tab, TabList, Tabs, Text } from "@chakra-ui/react"
+import {
+  Box,
+  Center,
+  Grid,
+  GridItem,
+  HStack,
+  Icon,
+  Image,
+  Link,
+  Tab,
+  TabList,
+  Tabs,
+  Text,
+  useColorModeValue
+} from "@chakra-ui/react"
 import { About } from "./components/About";
 import { Education } from "./components/Education";
 import { Experience } from "./components/Experience";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { motion, useMotionValue } from "framer-motion";
+import { HorizontalLR, VCenter } from "./components/SpacingTools";
+import { CapsizedText } from "./components/CapsizedText";
+import { SiGithub, SiGmail, SiLinkedin } from "react-icons/all";
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -21,11 +38,40 @@ const swipePower = (offset: number, velocity: number) => {
 export const App = () => {
 
   const tabs = {
-    About: (<About/>),
-    Education: (<Education/>),
-    Projects: (<Projects/>),
-    Experience: (<Experience/>),
-    Contact: (<Contact/>),
+    About: (
+      <VCenter>
+        <About/>
+      </VCenter>
+    ),
+    Education: (
+      <Box height="100%">
+        <VCenter>
+          <Education/>
+        </VCenter>
+        <Image
+          src="images/graduation_blaze.svg"
+          position="absolute"
+          bottom="0px"
+          height="7.5rem"
+          display={{ "2xl": "block", "base": "none" }}
+        />
+      </Box>
+    ),
+    Projects: (
+      <VCenter>
+        <Projects/>
+      </VCenter>
+    ),
+    Experience: (
+      <VCenter>
+        <Experience/>
+      </VCenter>
+    ),
+    Contact: (
+      <VCenter>
+        <Contact/>
+      </VCenter>
+    ),
   }
 
   const tabDisplays = [
@@ -105,7 +151,7 @@ export const App = () => {
       };
       if (index === animatingTab && tabExiting) {
         out = {
-          x: direction > 0 ? "-100vw": "100vw",
+          x: direction > 0 ? "-100vw" : "100vw",
           opacity: 0,
           zIndex: 0,
           display: "inherit",
@@ -148,8 +194,45 @@ export const App = () => {
         gap={0}
         h="100vh"
       >
-        <GridItem bg="orange.300" area={"header"}>
-          Header
+        <GridItem bg={useColorModeValue("blackAlpha.100", "blackAlpha.400")} area={"header"} px="1rem">
+          <HorizontalLR height="100%">
+            <VCenter>
+              <CapsizedText capsizeOptions={{ capHeight: 18 }}>Russell Newton</CapsizedText>
+            </VCenter>
+
+            <HStack spacing="0.375em" height="100%">
+              <CapsizedText capsizeOptions={{ capHeight: 21 }}>
+                <Link
+                  href="mailto:russell.newton01@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  fontSize={23}
+                >
+                  <Icon as={SiGmail} color="brightBlue.200"/>
+                </Link>
+              </CapsizedText>
+              <CapsizedText capsizeOptions={{ capHeight: 21 }}>
+                <Link
+                  href="https://www.linkedin.com/in/russellnewton01/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  fontSize={23}
+                >
+                  <Icon as={SiLinkedin} color="brightBlue.200"/>
+                </Link>
+              </CapsizedText>
+              <CapsizedText capsizeOptions={{ capHeight: 21 }}>
+                <Link
+                  href="https://github.com/Russell-Newton"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  fontSize={23}
+                >
+                  <Icon as={SiGithub} color="brightBlue.200"/>
+                </Link>
+              </CapsizedText>
+            </HStack>
+          </HorizontalLR>
         </GridItem>
         <GridItem
           area={"tabs"}
@@ -164,52 +247,49 @@ export const App = () => {
             </TabList>
           </Tabs>
         </GridItem>
-        <GridItem area={"main"} h="100%" overflowY="auto" overflowX="hidden" px="5vw">
-          <Flex h="100%" direction="column">
-            <Spacer/>
-            <Box p="1rem">
-              {
-                Object.values(tabs).map((value, index) => {
-                  return (
-                    <motion.div
-                      key={`animated-tab-panel-${index}`}
-                      style={{ display: tabDisplays[index] }}
-                      custom={{ index }}
-                      variants={variants}
-                      animate={["combo"]}
-                      // animate={["base", "out", "center"]}
-                      transition={{
-                        // x: { type: "spring", stiffness: 300, damping: 30 },
-                        x: { ease: "easeInOut" },
-                        opacity: { duration: 0.3 }
-                      }}
-                      onAnimationComplete={_definition => {
-                        if (index === animatingTab && tabDisplays[index].get() === "none") {
-                          setTabExiting(false);
-                          setAnimatingTab(tabIndex);
-                        }
-                      }}
-                      // drag="x"
-                      dragConstraints={{ left: 0, right: 0 }}
-                      dragElastic={1}
-                      onDragEnd={(e, { offset, velocity }) => {
-                        const swipe = swipePower(offset.x, velocity.x);
+        <GridItem area={"main"} h="100%" overflowY="auto" overflowX="hidden" px={{ "base": "6rem" }}>
+          <Box p="1rem" h="100%">
+            {
+              Object.values(tabs).map((value, index) => {
+                return (
+                  <motion.div
+                    key={`animated-tab-panel-${index}`}
+                    style={{ display: tabDisplays[index], height: "100%" }}
+                    custom={{ index }}
+                    variants={variants}
+                    animate={["combo"]}
+                    // animate={["base", "out", "center"]}
+                    transition={{
+                      // x: { type: "spring", stiffness: 300, damping: 30 },
+                      x: { ease: "easeInOut" },
+                      opacity: { duration: 0.3 }
+                    }}
+                    onAnimationComplete={_definition => {
+                      if (index === animatingTab && tabDisplays[index].get() === "none") {
+                        setTabExiting(false);
+                        setAnimatingTab(tabIndex);
+                      }
+                    }}
+                    // drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={1}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = swipePower(offset.x, velocity.x);
 
-                        if (swipe < -swipeConfidenceThreshold) {
-                          changeTab(tabIndex + 1);
-                        } else if (swipe > swipeConfidenceThreshold) {
-                          changeTab(tabIndex - 1);
-                        }
-                      }}
-                    >
-                      {value}
-                    </motion.div>
-                  )
-                })
-              }
-            </Box>
-            <Spacer/>
-          </Flex>
+                      if (swipe < -swipeConfidenceThreshold) {
+                        changeTab(tabIndex + 1);
+                      } else if (swipe > swipeConfidenceThreshold) {
+                        changeTab(tabIndex - 1);
+                      }
+                    }}
+
+                  >
+                    {value}
+                  </motion.div>
+                )
+              })
+            }
+          </Box>
         </GridItem>
         <GridItem area={"footer"}>
           <Center>

@@ -100,6 +100,7 @@ export const About = () => {
           borderStyle="solid"
           borderColor={useColorModeValue("brightBlueAlpha.100", "whiteAlpha.300")}
           alt="Russell Newton"
+          display={{"xl": "block", "base": "none"}}
         />
       </VCenter>
     </HorizontalLR>

@@ -3,7 +3,7 @@ import * as React from "react";
 
 export const VCenter = (props: BoxProps) => {
   return (
-    <Flex direction="column">
+    <Flex direction="column" h="100%">
       <Spacer/>
       <Box {...props} />
       <Spacer/>
@@ -14,7 +14,7 @@ export const VCenter = (props: BoxProps) => {
 export const HorizontalLR = (props: Omit<FlexProps, "w" | "direction">) => {
   const children = React.Children.toArray(props.children);
   return (
-    <Flex {...props}>
+    <Flex {...props} h="100%">
       {children[0]}
       <Spacer/>
       {children[1]}

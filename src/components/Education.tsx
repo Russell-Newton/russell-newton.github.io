@@ -1,7 +1,8 @@
 import {
   Box,
   BoxProps,
-  Heading, HStack,
+  Heading,
+  HStack,
   List,
   ListIcon,
   ListItem,
@@ -81,7 +82,7 @@ const Edu = (props: EduProps) => {
             React.Children.map(props.children, (value) => (
               <ListItem key={`${props.school}_${props.degree}`} as={HStack}>
                 <ListIcon as={FaAngleDoubleRight} color="brightBlue.200"/>
-                <CapsizedText capsizeOptions={{capHeight: 15}}>
+                <CapsizedText capsizeOptions={{ capHeight: 15 }}>
                   {value}
                 </CapsizedText>
               </ListItem>
@@ -133,7 +134,11 @@ export const Education = () => {
       </VCenter>
 
       <VCenter>
-        <GTVerticalLogo boxSize="xl" mr="2em"/>
+        <GTVerticalLogo
+          boxSize="xl"
+          mr="2em"
+          display={{"xl": "block", "base": "none"}}
+        />
       </VCenter>
     </HorizontalLR>
   )
