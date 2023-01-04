@@ -11,13 +11,11 @@ type InfoType = {
   icon: IconType,
 }
 
-const fontSize = 54;
-
 const Info = (props: InfoType) => {
   return (
     <ListItem as={HStack}>
-      <ListIcon as={props.icon} color="brightBlue.200"/>
-      <CapsizedText capsizeOptions={{ capHeight: 42 }}>
+      <ListIcon as={props.icon} color="brightBlue.200" fontSize={{ base: 18, sm: 26, md: 30, lg: 46, xl: 54 }}/>
+      <CapsizedText capsizeOptions={{ capHeight: { base: 14, sm: 20, md: 24, lg: 36, xl: 42 } }}>
         <Link
           href={props.link}
           target="_blank"
@@ -55,9 +53,9 @@ export const Contact = () => {
 
   return (
     <Box>
-      <Heading fontSize={fontSize * 1.5} as="h1">Get in Touch!</Heading>
+      <Heading fontSize={{ base: 36, sm: 54, md: 81 }} as="h1">Get in Touch!</Heading>
 
-      <List fontSize={fontSize} pl="6rem" spacing="0.25em">
+      <List pl={{ base: "0.5rem", sm: "1rem", md: "2rem", lg: "6rem" }} spacing="0.25em">
         {
           info.map((value) => (
             <Info {...value} key={`contact-${value.def}`}/>

@@ -264,13 +264,13 @@ type UserProps = {
 
 const UserCard = (user: UserProps) => {
   return (
-    <Center fontSize="32px">
+    <Center>
       <Image
         src={user.avatar_url}
         alt={user.login}
         height="64px"
         width="64px"
-        mr="1rem"
+        mr={{ base: "0.5rem", md: "1rem" }}
       />
       <Link
         as={HStack}
@@ -278,19 +278,24 @@ const UserCard = (user: UserProps) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Heading>{user.login}</Heading>
+        <Heading size={{ base: "sm", sm: "lg", md: "xl" }}>{user.login}</Heading>
 
         <Center height="54px">
-          <Divider orientation="vertical" mx="1rem"/>
+          <Divider orientation="vertical" mx={{ base: "0.25rem", md: "1rem" }}/>
         </Center>
 
-        <Heading>{user.public_repos} repos</Heading>
+        <Heading size={{ base: "sm", sm: "lg", md: "xl" }}>{user.public_repos} repos</Heading>
 
-        <Center height="54px">
-          <Divider orientation="vertical" mx="1rem"/>
+        <Center height="54px" display={{ base: "none", lg: "block" }}>
+          <Divider orientation="vertical" mx={{ base: "0.25rem", md: "1rem" }}/>
         </Center>
 
-        <Heading>{user.followers} followers</Heading>
+        <Heading
+          size={{ base: "sm", sm: "lg", md: "xl" }}
+          display={{ base: "none", lg: "block" }}
+        >
+          {user.followers} followers
+        </Heading>
       </Link>
     </Center>
   );

@@ -183,13 +183,13 @@ export const App = () => {
   }
 
   return (
-    <Box>
+    <Box h="100%">
       <Grid
         templateAreas={`"header"
                       "tabs"
                       "main"
                       "footer"`}
-        gridTemplateRows={"45px 42px 1fr 25px"}
+        gridTemplateRows={"45px 42px auto 25px"}
         gridTemplateColumns={"1fr"}
         gap={0}
         h="100vh"
@@ -237,7 +237,7 @@ export const App = () => {
         <GridItem
           area={"tabs"}
         >
-          <Tabs index={tabIndex} onChange={changeTab}>
+          <Tabs index={tabIndex} onChange={changeTab} size={{ base: "xs", sm: "sm", md: "md" }}>
             <TabList>
               {
                 Object.keys(tabs).map((value: string) => (
@@ -247,8 +247,9 @@ export const App = () => {
             </TabList>
           </Tabs>
         </GridItem>
-        <GridItem area={"main"} h="100%" overflowY="auto" overflowX="hidden" px={{ "base": "6rem" }}>
-          <Box p="1rem" h="100%">
+        <GridItem area={"main"} h="100%" overflowY="auto" overflowX="hidden"
+                  px={{ "base": "1rem", "md": "2rem", "lg": "6rem" }} py="1rem">
+          <Box h="100%">
             {
               Object.values(tabs).map((value, index) => {
                 return (

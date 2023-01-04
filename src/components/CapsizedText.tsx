@@ -1,17 +1,17 @@
-import { chakra, forwardRef, TextProps, useStyleConfig } from "@chakra-ui/react";
+import { chakra, forwardRef, ResponsiveValue, TextProps, useStyleConfig } from "@chakra-ui/react";
 
-type PartialCapsizeOptions = {
-  capHeight: number;
-  leading?: number;
+export type PartialCapsizeOptions = {
+  capHeight: ResponsiveValue<number>;
+  leading?: ResponsiveValue<number>;
 } | {
-  capHeight: number;
-  lineGap: number;
+  capHeight: ResponsiveValue<number>;
+  lineGap: ResponsiveValue<number>;
 } | {
-  fontSize: number;
-  leading?: number;
+  fontSize: ResponsiveValue<number>;
+  leading?: ResponsiveValue<number>;
 } | {
-  fontSize: number;
-  lineGap: number;
+  fontSize: ResponsiveValue<number>;
+  lineGap: ResponsiveValue<number>;
 }
 
 export interface CapsizedTextProps extends Omit<TextProps, "lineHeight" | "fontSize"> {

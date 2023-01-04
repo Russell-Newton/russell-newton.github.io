@@ -3,6 +3,7 @@ import { mode } from "@chakra-ui/theme-tools"
 import { TagTheme } from "./tag";
 import { LinkTheme } from "./link";
 import { CapsizedTextTheme, HeadingTheme } from "./text";
+import { TabsTheme } from "./tabs";
 
 const config: ThemeConfig = {
   initialColorMode: "system",
@@ -15,6 +16,7 @@ export default extendTheme({
     Link: LinkTheme,
     Heading: HeadingTheme,
     CapsizedText: CapsizedTextTheme,
+    Tabs: TabsTheme,
   },
   colors: {
     brightBlue: {

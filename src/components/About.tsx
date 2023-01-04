@@ -50,11 +50,11 @@ export const About = () => {
   return (
     <HorizontalLR>
       <Box>
-        <Heading size="4xl" as="h1">Russell Newton</Heading>
+        <Heading size={{ base: "2xl", sm: "4xl" }} as="h1">Russell Newton</Heading>
 
         <Box h="4em"></Box>
 
-        <List fontSize={30} pl="4rem" spacing="0.25em">
+        <List fontSize={30} pl={{ base: "1rem", sm: "2rem", md: "4rem" }} spacing="0.25em">
           {
             tags.map((value) => (
               <ListItem key={value} as={HStack}>
