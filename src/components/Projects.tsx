@@ -39,9 +39,10 @@ const jsyaml = require("js-yaml");
 const repoNames: Array<string> = [
   "TikTokPy",
   "DuckyLighting",
+  "CS4795-Port",
   "MultiTouch",
   "StatiCat",
-  "NotMalware-Game"
+  "NotMalware-Game",
 ]
 
 type RepoProps = {
