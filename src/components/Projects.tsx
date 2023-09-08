@@ -37,13 +37,14 @@ import { CapsizedText } from "./CapsizedText";
 const jsyaml = require("js-yaml");
 
 const repoNames: Array<string> = [
-  "TikTokPy",
-  "DuckyLighting",
-  "CS4795-Port",
-  "UE5-Marching-Cubes",
-  "MultiTouch",
-  "StatiCat",
-  "NotMalware-Game",
+  "Russell-Newton/TikTokPy",
+  "Russell-Newton/DuckyLighting",
+  "Russell-Newton/UE5.2-Project-L-Style-Mimic-public",
+  "Russell-Newton/NotMalware-Game",
+  "Russell-Newton/CS4795-Port",
+  "Russell-Newton/UE5-Marching-Cubes",
+  "Russell-Newton/MultiTouch",
+  "Russell-Newton/StatiCat",
 ]
 
 type RepoProps = {
@@ -192,7 +193,7 @@ async function fetchColors() {
 
 async function fetchRepo(props: { repo: string }, controller: AbortController) {
   const repoRes = await fetch(
-    `https://api.github.com/repos/Russell-Newton/${props.repo}`,
+    `https://api.github.com/repos/${props.repo}`,
     {
       headers: {
         Authorization: `token ${process.env.REACT_APP_GITHUB_API_KEY}`,
@@ -201,7 +202,7 @@ async function fetchRepo(props: { repo: string }, controller: AbortController) {
     }
   );
   const languageRes = await fetch(
-    `https://api.github.com/repos/Russell-Newton/${props.repo}/languages`,
+    `https://api.github.com/repos/${props.repo}/languages`,
     {
       headers: {
         Authorization: `token ${process.env.REACT_APP_GITHUB_API_KEY}`,
