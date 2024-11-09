@@ -16,6 +16,7 @@ const getFileBlob = async (options: GetFileContentOptions, fileSHA: string) => {
     return await convertBlob(fileBlob)
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
@@ -24,6 +25,7 @@ const convertBlob = async (blob: string) => {
     return base64EncodeUnicode(blob)
   } catch (error) {
     console.log(error)
+    return null;
   }
 }
 
@@ -50,4 +52,5 @@ export default async function getRawGithubFileContent(options: GetFileContentOpt
   } catch (error) {
     console.log(error);
   }
+  return null;
 }

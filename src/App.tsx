@@ -23,6 +23,7 @@ import { motion, useMotionValue } from "framer-motion";
 import { HorizontalLR, VCenter } from "./components/SpacingTools";
 import { CapsizedText } from "./components/CapsizedText";
 import { SiGithub, SiGmail, SiLinkedin } from "react-icons/all";
+import { Publications } from "./components/Publications";
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -56,6 +57,20 @@ export const App = () => {
           display={{ "2xl": "block", "base": "none" }}
         />
       </Box>
+    ),
+    Publications: (
+      <HorizontalLR>
+        <VCenter>
+          <Publications/>
+        </VCenter>
+        <VCenter>
+          <Image
+            src="images/online_articles_blaze.svg"
+            height="30rem"
+            display={{ "2xl": "block", "base": "none" }}
+          />
+        </VCenter>
+      </HorizontalLR>
     ),
     Projects: (
       <VCenter>
@@ -294,7 +309,7 @@ export const App = () => {
         </GridItem>
         <GridItem area={"footer"}>
           <Center>
-            <Text>&copy; Russell Newton, 2023</Text>
+            <Text>&copy; Russell Newton, 2024</Text>
           </Center>
         </GridItem>
       </Grid>

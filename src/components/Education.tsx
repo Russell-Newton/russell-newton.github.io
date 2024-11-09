@@ -94,15 +94,28 @@ const Edu = (props: EduProps) => {
   )
 }
 
+const PhD = () => {
+  return (
+    <Edu
+      school="Georgia Institute of Technology"
+      startDate="Aug. 2024"
+      degree="Doctor of Philosophy in Architecture"
+    >
+      <Text as="span">Concentration: Design Computation</Text>
+    </Edu>
+  );
+};
+
 const Grad = () => {
   return (
     <Edu
       school="Georgia Institute of Technology"
       startDate="Jan. 2023"
+      endDate="May 2024"
       degree="Master of Science in Computer Science"
     >
-      <Text as="span">Expected Graduation: May 2024</Text>
       <Text as="span">Concentration: Computer Graphics</Text>
+      <Text as="span">GPA: 4.0</Text>
     </Edu>
   );
 };
@@ -127,6 +140,8 @@ export const Education = () => {
     <HorizontalLR>
       <VCenter>
         <VStack>
+          <PhD/>
+          <Box h="2rem"></Box>
           <Grad/>
           <Box h="2rem"></Box>
           <Undergrad/>

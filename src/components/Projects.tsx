@@ -34,7 +34,7 @@ import { Async } from "react-async";
 import getRawGithubFileContent from "../tools/gitraw";
 import { CapsizedText } from "./CapsizedText";
 
-const jsyaml = require("js-yaml");
+import jsyaml from "js-yaml";
 
 const repoNames: Array<string> = [
   "Russell-Newton/TikTokPy",
@@ -188,6 +188,9 @@ async function fetchColors() {
     pathToDirectory: "lib/linguist",
     fileName: "languages.yml",
   });
+  if (colorsRaw === null) {
+    return null;
+  }
   return jsyaml.load(colorsRaw);
 }
 
@@ -218,6 +221,7 @@ async function fetchRepo(props: { repo: string }, controller: AbortController) {
   });
   let colors = Object.keys(languages).map((value) => ({
     language: value,
+    // @ts-ignore
     color: allColors[value]["color"],
     proportion: languages[value] / languageTotal
   }));
