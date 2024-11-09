@@ -1,15 +1,9 @@
-import { readFileSync } from "fs";
 import {
   Box,
-  BoxProps,
   Heading,
-  HStack,
   List,
-  ListIcon,
   ListItem,
   Text,
-  useColorModeValue,
-  VStack,
 } from "@chakra-ui/react";
 import { BibtexParser, Entry } from "bibtex-js-parser";
 import React, { useEffect, useState } from "react";
