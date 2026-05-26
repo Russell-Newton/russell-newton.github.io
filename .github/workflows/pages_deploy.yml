@@ -42,7 +42,7 @@ jobs:
           touch .env
           echo REACT_APP_GITHUB_API_KEY=${{ secrets.REACT_APP_GITHUB_API_KEY }} >> .env
         
-      - name: Demo app build
+      - name: Build Web App
         run: npm run build
         
       - name: Upload artifact
