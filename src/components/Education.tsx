@@ -99,9 +99,11 @@ const PhD = () => {
     <Edu
       school="Georgia Institute of Technology"
       startDate="Aug. 2024"
-      degree="Doctor of Philosophy in Architecture"
+      endDate="May 2025"
+      degree="Master of Science in Architecture"
     >
       <Text as="span">Concentration: Design Computation</Text>
+      <Text as="span">GPA: 4.0</Text>
     </Edu>
   );
 };

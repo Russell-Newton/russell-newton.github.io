@@ -8,6 +8,7 @@ import * as ReactDOM from "react-dom/client"
 import { App } from "./App"
 import theme from "./theme/theme";
 import { IconContext } from "react-icons"
+import { TabContextProvider } from "./contexts/TabContext";
 
 
 const container = document.getElementById("root")
@@ -16,12 +17,14 @@ const root = ReactDOM.createRoot(container)
 
 root.render(
   <React.StrictMode>
-    <ColorModeScript/>
+    <ColorModeScript />
     <ChakraProvider theme={theme}>
-      <IconContext.Provider value={{ style: { verticalAlign: 'baseline' } }}>
-        <App/>
+      <IconContext.Provider value={{ style: { verticalAlign: "baseline" } }}>
+        <TabContextProvider>
+          <App />
+        </TabContextProvider>
       </IconContext.Provider>
     </ChakraProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
 

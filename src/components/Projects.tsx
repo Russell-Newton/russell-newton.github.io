@@ -21,13 +21,11 @@ import {
   SimpleGridProps,
   Spacer,
   Text,
-  useColorModeValue,
   useToken,
   VStack
 } from "@chakra-ui/react";
-import { Theme } from "react-activity-calendar";
-import GitHubCalendar from "react-github-calendar";
-import ReactTooltip from "react-tooltip";
+import { ThemeInput } from "react-activity-calendar";
+import { GitHubCalendar, type Activity } from "react-github-calendar";
 import * as React from "react";
 import { BiGitRepoForked, FaLink, FaRegStar, GoEye } from "react-icons/all";
 import { Async } from "react-async";
@@ -35,13 +33,16 @@ import getRawGithubFileContent from "../tools/gitraw";
 import { CapsizedText } from "./CapsizedText";
 
 import jsyaml from "js-yaml";
+import { useCallback, useState } from "react";
+
+const showCalendarThreshold = 10;
 
 const repoNames: Array<string> = [
   "Russell-Newton/TikTokPy",
   "Russell-Newton/DuckyLighting",
   "Russell-Newton/UE5.2-Project-L-Style-Mimic-public",
   "Russell-Newton/NotMalware-Game",
-  "Russell-Newton/CS4795-Port",
+  // "Russell-Newton/CS4795-Port",
   "Russell-Newton/UE5-Marching-Cubes",
   "Russell-Newton/MultiTouch",
   "Russell-Newton/StatiCat",
@@ -328,21 +329,40 @@ const User = () => {
 
 export const Projects = () => {
 
-  const lightCalendarTheme: Theme = {
-    level0: useToken("colors", "gray.50"),
-    level1: useToken("colors", "brightBlue.100"),
-    level2: useToken("colors", "brightBlue.200"),
-    level3: useToken("colors", "brightBlue.300"),
-    level4: useToken("colors", "brightBlue.500"),
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
+
+  const lightCalendarTheme: Array<string> = [
+    useToken("colors", "gray.50"),
+    useToken("colors", "brightBlue.100"),
+    useToken("colors", "brightBlue.200"),
+    useToken("colors", "brightBlue.300"),
+    useToken("colors", "brightBlue.500"),
+  ]
+  const darkCalendarTheme: Array<string> = [
+    useToken("colors", "gray.700"),
+    useToken("colors", "brightBlue.800"),
+    useToken("colors", "brightBlue.600"),
+    useToken("colors", "brightBlue.400"),
+    useToken("colors", "brightBlue.300"),
+  ]
+  const calendarTheme: ThemeInput = {
+    light: lightCalendarTheme,
+    dark: darkCalendarTheme,
   }
-  const darkCalendarTheme: Theme = {
-    level0: useToken("colors", "gray.700"),
-    level1: useToken("colors", "brightBlue.800"),
-    level2: useToken("colors", "brightBlue.600"),
-    level3: useToken("colors", "brightBlue.400"),
-    level4: useToken("colors", "brightBlue.300"),
-  }
-  const calendarTheme = useColorModeValue(lightCalendarTheme, darkCalendarTheme)
+
+  const transformCalendarData = useCallback(
+    (data: Array<Activity>) => {
+      if (
+        data.reduce((prevSum, currDay) => {
+          return prevSum + currDay.count;
+        }, 0) >= showCalendarThreshold
+      ) {
+        setShowCalendar(true);
+      }
+      return data;
+    },
+    [setShowCalendar]
+  );
 
   return (
     <Box>
@@ -356,14 +376,14 @@ export const Projects = () => {
       </Center>
       <Repos minChildWidth="300px" spacing="1rem"/>
 
-      <Center mt="2rem">
+      <Center mt="2rem" display={showCalendar ? "flex" : "none"}>
         <GitHubCalendar
           username="Russell-Newton"
           fontSize={16}
           theme={calendarTheme}
-        >
-          <ReactTooltip delayShow={50} html/>
-        </GitHubCalendar>
+          transformData={data => transformCalendarData(data)}
+          showTotalCount={false}
+        />
       </Center>
     </Box>
   );
